@@ -11,7 +11,7 @@ export default function Layout({ children }: TLayout) {
   return (
     <>
       <Navbar className={cn("font-sans")} />
-      <main className={cn("min-h-screen bg-background font-sans antialiased")}>
+      <main className={cn("min-h-screen font-sans antialiased")}>
         {children}
       </main>
       <Footer className={cn("font-sans")} />
