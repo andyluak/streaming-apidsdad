@@ -10,7 +10,7 @@ function useStreamResponse({
   const [responses, setResponses] = useState("")
   const [data, setData] = useState<ChatCompletion | undefined>()
   const [isLoading, setIsLoading] = useState(false)
-  const { mutate: startStream, isPending } = useMutation({
+  const { mutate: startStream } = useMutation({
     mutationFn: async (messageContent: string) => {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -27,9 +27,9 @@ function useStreamResponse({
       const reader = response.body.getReader()
       return reader
     },
-    onSuccess: (data) => {
+    onSuccess: (reader) => {
       setIsLoading(true)
-      readStream(data)
+      readStream(reader)
     },
   })
 
@@ -43,7 +43,7 @@ function useStreamResponse({
 
       const text = new TextDecoder().decode(value)
       if (text.includes("END STREAM")) {
-        setResponses((prev) => prev + text.replace(/.*END STREAM/, ""))
+        setData(JSON.parse(text.replace(/.*END STREAM/, "")))
       } else {
         setResponses((prev) => prev + text)
         streamCallback((prevValue) => prevValue + text)

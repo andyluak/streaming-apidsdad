@@ -8,7 +8,7 @@ import useStreamResponse from "@/components/useStreamResponse"
 
 function MyComponent() {
   const [sentence, setSentence] = React.useState<string>("")
-  const { startStream, isLoading } = useStreamResponse({
+  const { startStream, isLoading, responses } = useStreamResponse({
     streamCallback: setSentence,
   })
 
@@ -25,6 +25,8 @@ function MyComponent() {
       document.removeEventListener("keydown", handleKeyDown)
     }
   }, [])
+
+  console.log(sentence)
 
   return (
     <div>

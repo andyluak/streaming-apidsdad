@@ -13,8 +13,13 @@ export default async function handler(
         model: "gpt-4",
         messages: [
           {
+            role: "assistant",
+            content:
+              "Your job is to finish any sentence the user starts without repeating the sentence that the user said.",
+          },
+          {
             role: "user",
-            content: `Finish this sentence: ${message}`,
+            content: message,
           },
         ],
         stream: true,
