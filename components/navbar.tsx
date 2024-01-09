@@ -7,7 +7,11 @@ type Props = {
 }
 
 function Navbar({ className }: Props) {
-  return <header className={cn(className)}>Navbar</header>
+  return (
+    <header className={cn("py-16 text-6xl text-center", className)}>
+      Finish my sentence
+    </header>
+  )
 }
 
 export default Navbar
