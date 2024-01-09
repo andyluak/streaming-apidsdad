@@ -26,8 +26,6 @@ function MyComponent() {
     }
   }, [])
 
-  console.log(sentence)
-
   return (
     <div>
       <form
